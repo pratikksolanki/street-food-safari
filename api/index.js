@@ -97,7 +97,6 @@ app.get("/", (_req, res) => {
       "GET /search?q=",
       "GET /featured",
       "GET /stats",
-      "GET /slow",
     ],
   });
 });
@@ -146,14 +145,6 @@ app.post("/vendors/:id/favorite", (req, res) => {
   if (!v) return res.status(404).json({ error: "Not found" });
   v.isFavorite = !v.isFavorite;
   res.json({ id: v.id, isFavorite: v.isFavorite });
-});
-
-app.get("/slow", async (_req, res) => {
-  const ms = 1500 + Math.floor(Math.random() * 2000);
-  const fail = Math.random() < 0.2;
-  await new Promise((r) => setTimeout(r, ms));
-  if (fail) return res.status(503).json({ error: "Temporary outage" });
-  res.json({ ok: true, delayMs: ms, message: "Thanks for waiting!" });
 });
 
 // ---------- Start ----------

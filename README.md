@@ -1,4 +1,4 @@
-# Street Food Safari – Mobile Engineer Challenge
+# Street Food Safari – Software Engineer (Mobile) Challenge
 
 Welcome to **Street Food Safari** 🥡🌮🍜
 
@@ -18,9 +18,11 @@ This repo contains two parts:
 
 ## Your Task
 
-Build a mobile app using **Expo** (managed) that consumes the Street Food Safari API and provides a smooth, polished experience.
+Build a mobile app using **Expo** that consumes the Street Food Safari API and provides a smooth, polished experience.
 
-**Requirements:**
+Note: this isn't purely a client-side challenge. Part of the work is on the server — you'll need to **modify and extend the Express API** in `/api`, not just consume it.
+
+### Client Requirements
 
 - **Navigation**
   - Tabs: `Vendors`, `Favorites`, `About`
@@ -36,16 +38,13 @@ Build a mobile app using **Expo** (managed) that consumes the Street Food Safari
   - Fetch from `/vendors/:id`
   - Show description + menu items
   - Menu items should show small badges (e.g. spicy/vegan)
-  - Toggle favorite via `POST /vendors/:id/favorite`
+  - Favorite toggle (see Backend Task A for the endpoint design)
+  - View and submit reviews (see Backend Task B)
 
 - **Search**
   - Use `/search?q=`
   - Debounced input in a header search bar
   - Filters (Optional): filter vendors by city or cuisine via `/vendors?city=&cuisine=`
-
-- **Slow Path UX**
-  - Somewhere in the app (e.g. About screen), call `/slow`
-  - Show proper loading state, retry option, and error handling
 
 - **Documentation**
   - Add a README in `/app` explaining:
@@ -53,13 +52,29 @@ Build a mobile app using **Expo** (managed) that consumes the Street Food Safari
     - Any design/architecture decisions
     - Tradeoffs or extra features you added
 
+### Backend Requirements
+
+- **Task A — Fix the favorites bug**
+  - Today, `POST /vendors/:id/favorite` flips a global `isFavorite` boolean on the shared vendor record. That means every client sees every other client's favorites — which is obviously wrong.
+  - Redesign favorites so they're scoped to the individual client. You decide how the server identifies a client, what the request/response shape looks like, and how to handle duplicate/repeated calls.
+  - Expose whatever endpoints your app needs (e.g. list favorites, add, remove).
+  - Be ready to explain your choices in the `/app` README.
+
+- **Task B — Add reviews**
+  - `POST /vendors/:id/reviews` — accepts a rating (1–5) and a comment. Validate the input server-side and return sensible errors for bad input vs. unknown vendor.
+  - `GET /vendors/:id/reviews` — paginated list.
+  - A vendor's `rating` should be the average of its reviews, and the vendor payload should expose a review count. Think about how this stays consistent after a new review is posted.
+  - Unlike favorites, reviews are public — all clients see the same reviews for a vendor.
+  - The client should let the user view existing reviews on the vendor details screen and submit a new one.
+
 ## Time Expectation
 
-We estimate this challenge should take around **5 hours**.
+We estimate this challenge should take around **6 hours**.
 You’re welcome to spend more if you want to polish or add extras, but we’ll mainly be looking at:
 
-- How you structure and reason about the app
-- How you handle data fetching and state
+- How you structure and reason about both the app and the API changes
+- How you model state that belongs to a user vs. state that's shared
+- How you handle data fetching, validation, and error cases
 - Attention to detail in the UI and UX
 - How you consider performance
 
