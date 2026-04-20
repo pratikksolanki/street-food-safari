@@ -6,6 +6,8 @@ Imagine you’re traveling through vibrant cities around the world, searching fo
 
 This challenge is your chance to show how you think about architecture, polish, performance, and user experience when building a real-world mobile app.
 
+> **Solution write-up:** see [`app/README.md`](app/README.md) for how to run, architecture and design decisions, and the rationale behind Task A and Task B.
+
 ## Repository Structure
 
 This repo contains two parts:
