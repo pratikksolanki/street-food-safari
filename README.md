@@ -1,12 +1,12 @@
 # Street Food Safari – Software Engineer (Mobile) Challenge
 
+> **Solution write-up:** see [`app/README.md`](app/README.md) for how to run, architecture and design decisions, and the rationale behind Task A and Task B.
+
 Welcome to **Street Food Safari** 🥡🌮🍜
 
 Imagine you’re traveling through vibrant cities around the world, searching for the best street food vendors hidden in corners and alleys. From steaming bowls of ramen in Tokyo to crispy lángos in Budapest, your mission is to build an app that helps hungry travelers discover and explore these vendors.
 
 This challenge is your chance to show how you think about architecture, polish, performance, and user experience when building a real-world mobile app.
-
-> **Solution write-up:** see [`app/README.md`](app/README.md) for how to run, architecture and design decisions, and the rationale behind Task A and Task B.
 
 ## Repository Structure
 
