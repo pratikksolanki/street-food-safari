@@ -9,10 +9,7 @@ const router = Router();
 // dimension are OR'd; the two dimensions are AND'd.
 //
 // The response envelope also carries `byCity` / `byCuisine` facets with
-// drill-down semantics: each facet is computed with *its own* filter dropped
-// but all other constraints applied. That's exactly what a filter UI needs to
-// show "which values are still viable given my other selections" without a
-// second request per toggle.
+// drill-down semantics
 router.get("/vendors", (req, res) => {
   const cities = asLowerList(req.query.city);
   const cuisines = asLowerList(req.query.cuisine);
