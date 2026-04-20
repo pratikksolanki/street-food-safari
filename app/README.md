@@ -51,6 +51,7 @@ The original API mutated a global `isFavorite` boolean on the shared vendor reco
 
 ## Architecture and Design Decisions
 
+- **Expo SDK 55.** Picked the latest SDK mainly for `NativeTabs` (from `expo-router/unstable-native-tabs`), which renders the tab bar via the real platform component instead of a JS imitation. That unlocks SF Symbols on iOS and Material icons on Android with per-state `selected` variants, platform haptics, minimize-on-scroll, and tap-active-tab-to-scroll-to-top without extra libraries. Tradeoff: the API is still behind an `unstable-` import path, so a future SDK release may require a small migration. Everything else the app uses is on stable surfaces.
 - **Client identity established via `X-Client-Id` header and UUID stored in `expo-secure-store`** because favourites and "my reviews" need to be per-device, and keychain/Keystore is the right place for an identifier that should survive app restarts.
 - **Split per-user state under `/me/*`, shared catalogue on public routes** to make the trust boundary obvious on the server and prevent the bug in the original API where everyone can sees everyone else's favourite vendors.
 - **Rating and review count derived from the review list, it's not stored.** The value is recomputed on every write, to prevent drift between the vendor header and the review pages.
