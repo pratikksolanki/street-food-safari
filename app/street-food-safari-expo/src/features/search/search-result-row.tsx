@@ -1,5 +1,5 @@
 import { Image as ExpoImage } from "expo-image";
-import { Star } from "lucide-react-native";
+import { Award, Star } from "lucide-react-native";
 import { forwardRef } from "react";
 import { Pressable, type PressableProps, View } from "react-native";
 
@@ -109,6 +109,17 @@ export const SearchResultRow = forwardRef<View, Props>(function SearchResultRow(
           </Subhead>
           <Dot theme={theme} />
           <Callout color="tertiary">{vendor.priceLevel}</Callout>
+          {vendor.isFeatured ? (
+            <>
+              <Dot theme={theme} />
+              <Subhead color="secondary">Featured</Subhead>
+              <Award
+                size={12}
+                color={theme.colors.text}
+                strokeWidth={2}
+              />
+            </>
+          ) : null}
         </View>
       </View>
     </Pressable>
